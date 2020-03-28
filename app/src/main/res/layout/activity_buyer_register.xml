@@ -46,8 +46,8 @@
         android:ems="10"
         android:hint="Mobile Number "
         android:inputType="number"
-        app:layout_constraintStart_toStartOf="@+id/email"
-        app:layout_constraintTop_toBottomOf="@+id/email" />
+        app:layout_constraintStart_toStartOf="@+id/em"
+        app:layout_constraintTop_toBottomOf="@+id/em" />
 
     <EditText
         android:id="@+id/em"
@@ -65,13 +65,9 @@
         android:layout_width="339dp"
         android:layout_height="48dp"
         android:layout_marginTop="40dp"
-        android:layout_marginEnd="36dp"
-        android:layout_marginRight="36dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/mob_no"
         app:layout_constraintTop_toBottomOf="@+id/mob_no" />
 
@@ -80,7 +76,7 @@
         android:layout_width="339dp"
 
         android:layout_height="64dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="52dp"
         android:height="@android:dimen/app_icon_size"
         android:background="@drawable/botton_background"
         android:text="Resister"
@@ -97,7 +93,7 @@
         android:ems="10"
         android:hint="Confirm Password"
         android:inputType="textPassword"
-        app:layout_constraintStart_toStartOf="@+id/password"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
+        app:layout_constraintStart_toStartOf="@+id/pass"
+        app:layout_constraintTop_toBottomOf="@+id/pass" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

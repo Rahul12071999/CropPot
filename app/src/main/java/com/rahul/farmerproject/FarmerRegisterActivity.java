@@ -32,8 +32,8 @@ public class FarmerRegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_farmer_register);
         Fname=findViewById(R.id.first_name);
         Lname=findViewById(R.id.last_name);
-        Email=findViewById(R.id.email);
-        Password=findViewById(R.id.password);
+        Email=findViewById(R.id.em);
+        Password=findViewById(R.id.pass);
         Conpass=findViewById(R.id.confirmpass);
         number=findViewById(R.id.mob_no);
         Reg=findViewById(R.id.button);

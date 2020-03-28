@@ -65,14 +65,14 @@
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
-        app:layout_constraintStart_toStartOf="@+id/email"
-        app:layout_constraintTop_toBottomOf="@+id/email" />
+        app:layout_constraintStart_toStartOf="@+id/em"
+        app:layout_constraintTop_toBottomOf="@+id/em" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="339dp"
         android:layout_height="64dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="68dp"
         android:background="@drawable/botton_background"
         android:onClick="btnClick"
         android:text="Resister"
@@ -85,12 +85,12 @@
         android:id="@+id/confirmpass"
         android:layout_width="340dp"
         android:layout_height="45dp"
-        android:layout_marginTop="41dp"
+        android:layout_marginTop="40dp"
         android:ems="10"
         android:hint="Confirm Password"
         android:inputType="textPassword"
-        app:layout_constraintStart_toStartOf="@+id/password"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
+        app:layout_constraintStart_toStartOf="@+id/pass"
+        app:layout_constraintTop_toBottomOf="@+id/pass" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
