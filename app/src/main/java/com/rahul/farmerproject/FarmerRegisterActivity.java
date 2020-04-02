@@ -24,7 +24,9 @@ public class FarmerRegisterActivity extends AppCompatActivity {
     private EditText Fname,Lname,Email,Password,number,Conpass;
     private Button Reg;
     private FirebaseAuth f;
-    DatabaseReference db;
+    private DatabaseReference db;
+//    private DatabaseReference FarmerRef;
+//    private FirebaseDatabase DataBase;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +41,7 @@ public class FarmerRegisterActivity extends AppCompatActivity {
         Reg=findViewById(R.id.button);
         f=FirebaseAuth.getInstance();
         db=FirebaseDatabase.getInstance().getReference("Farmer");
+        //FarmerRef=DataBase.getReference("Farmer");
 
     }
     public boolean validateEmail(String emilip){
@@ -73,11 +76,17 @@ public class FarmerRegisterActivity extends AppCompatActivity {
                    @Override
                    public void onComplete(@NonNull Task<AuthResult> task) {
                        if(task.isSuccessful()){
+                           Farmer farmer=new Farmer(fname,lname,email,No);
+                           //String id=db.push().getKey();
+                           db.child(No).setValue(farmer);
+//                           DatabaseReference ref=FarmerRef.child(No);//NO is the key
+//                           ref.setValue(farmer);
+                           Toast.makeText(FarmerRegisterActivity.this,"Resistration Successful",Toast.LENGTH_SHORT).show();
                            Intent i = new Intent(FarmerRegisterActivity.this, FarmerDashboard.class);
                            startActivity(i);
                        }
                        else
-                           Toast.makeText(FarmerRegisterActivity.this,"Signup Unsuccessful",Toast.LENGTH_SHORT);
+                           Toast.makeText(FarmerRegisterActivity.this,"Signup Unsuccessful",Toast.LENGTH_SHORT).show();
                    }
                });
 

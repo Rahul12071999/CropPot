@@ -7,6 +7,7 @@ package com.rahul.farmerproject;
         import android.text.TextUtils;
         import android.view.View;
         import android.widget.EditText;
+        import android.widget.RadioButton;
         import android.widget.Toast;
 
         import com.google.android.gms.tasks.OnCompleteListener;
@@ -20,14 +21,17 @@ public class LoginActivity extends AppCompatActivity {
     FirebaseAuth.AuthStateListener authState;
     EditText email,pass;
     String Email,Pass;
+    RadioButton rb1,rb2;
 @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        fa = FirebaseAuth.getInstance();
+
         email = findViewById(R.id.em);
         pass = findViewById(R.id.pass);
-
+        rb1=findViewById(R.id.radioButton1);
+        rb2=findViewById(R.id.radioButton2);
+        fa = FirebaseAuth.getInstance();
     }
 
     public void loginClick(View view){
@@ -38,10 +42,14 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(LoginActivity.this,"Enter your Email",Toast.LENGTH_SHORT).show();
             return;
         }
+
         if(TextUtils.isEmpty(Pass)){
             Toast.makeText(LoginActivity.this,"Enter your Password",Toast.LENGTH_SHORT).show();
             return;
         }
+//        if(rb1.isChecked()){
+//            fa = FirebaseAuth.getInstance();
+//        }
         fa.signInWithEmailAndPassword(Email,Pass)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
