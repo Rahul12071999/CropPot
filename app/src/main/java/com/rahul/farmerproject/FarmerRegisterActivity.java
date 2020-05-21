@@ -96,7 +96,6 @@ public class FarmerRegisterActivity extends AppCompatActivity {
         }
         else{
             Toast.makeText(FarmerRegisterActivity.this,"Enter Valid Details",Toast.LENGTH_SHORT).show();
-
         }
 
     }

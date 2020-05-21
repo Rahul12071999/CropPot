@@ -17,14 +17,14 @@ public class FarmerDashboard extends AppCompatActivity {
     public void profileclick(View view)
     {
         Toast.makeText(FarmerDashboard.this,"profile details", Toast.LENGTH_LONG).show();
-        Intent ifd1=new Intent(FarmerDashboard.this ,FarmerProfile.class);
+        Intent ifd1=new Intent(FarmerDashboard.this ,ImagesActivity.class);
         startActivity(ifd1);
     }
 
     public void addproductclick(View view)
     {
         Toast.makeText(FarmerDashboard.this,"product details",Toast.LENGTH_LONG).show();
-        Intent ifd2=new Intent(FarmerDashboard.this ,FarmerAddProduct.class);
+        Intent ifd2=new Intent(FarmerDashboard.this ,AddProducts.class);
         startActivity(ifd2);
     }
     public void myordersclick(View view)

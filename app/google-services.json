@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "1089504495856-oejf7ihp96f0975d8vci7sjqu82ppu87.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rahul.farmerproject",
+            "certificate_hash": "739b36142a1bb8ce6fd33e069c165c20e2cd03d5"
+          }
+        },
+        {
           "client_id": "1089504495856-9njjsh3vmi7ek3bp4enoop7mo1fbleqa.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
