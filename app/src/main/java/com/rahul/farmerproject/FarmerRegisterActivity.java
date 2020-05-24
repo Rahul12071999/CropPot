@@ -77,12 +77,9 @@ public class FarmerRegisterActivity extends AppCompatActivity {
                    public void onComplete(@NonNull Task<AuthResult> task) {
                        if(task.isSuccessful()){
                            Farmer farmer=new Farmer(fname,lname,email,No);
-                           //String id=db.push().getKey();
                            db.child(No).setValue(farmer);
-//                           DatabaseReference ref=FarmerRef.child(No);//NO is the key
-//                           ref.setValue(farmer);
                            Toast.makeText(FarmerRegisterActivity.this,"Resistration Successful",Toast.LENGTH_SHORT).show();
-                           Intent i = new Intent(FarmerRegisterActivity.this, FarmerDashboard.class);
+                           Intent i = new Intent(FarmerRegisterActivity.this, LoginActivity.class);
                            startActivity(i);
                        }
                        else

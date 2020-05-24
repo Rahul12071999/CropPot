@@ -34,7 +34,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
     public void onBindViewHolder(@NonNull ImageViewHolder holder, int position) {
         uploads uploadCurrent=mUploads.get(position);
         holder.name.setText(uploadCurrent.getName());
-        holder.price.setText(uploadCurrent.getQuantity());
+        holder.price.setText(uploadCurrent.getQuantity()+" per kg");
         //holder.imageView.setImageURI(uploadCurrent.getImagrurl());
         Picasso.with(mContext).load(uploadCurrent.getImagrurl())
                 .placeholder(R.mipmap.ic_launcher)

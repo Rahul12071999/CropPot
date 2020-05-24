@@ -79,6 +79,7 @@
         android:layout_marginTop="52dp"
         android:height="@android:dimen/app_icon_size"
         android:background="@drawable/botton_background"
+        android:onClick="RegisterClick"
         android:text="Resister"
         android:textColor="#9E110F0F"
         android:textSize="24sp"

@@ -18,6 +18,8 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -30,9 +32,10 @@ import java.time.Instant;
 
 public class AddProducts extends AppCompatActivity {
     private static final int PICK_IMAGE_REQUEST=1;
-    private DatabaseReference db;
+    private DatabaseReference db,buyerRef;
     private StorageReference ref;
     private Uri mImageuri;
+    FirebaseUser user;
     EditText name,wt;
     ImageView im;
     ProgressBar pb;
@@ -41,7 +44,12 @@ public class AddProducts extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_products);
-        db= FirebaseDatabase.getInstance().getReference("Farmer/7020139865/Products");
+        user= FirebaseAuth.getInstance().getCurrentUser();
+        String no=user.getPhoneNumber();
+        String path="Farmer/"+no+"/Products";
+        db= FirebaseDatabase.getInstance().getReference(path);
+        buyerRef=FirebaseDatabase.getInstance().getReference("AllProduct");
+        //db= FirebaseDatabase.getInstance().getReference("Farmer/7020139865/Products");
         //tv=findViewById(R.id.textView);
        name=findViewById(R.id.editText3);
        wt=findViewById(R.id.editText);
@@ -53,7 +61,6 @@ public class AddProducts extends AppCompatActivity {
         ContentResolver cr=getContentResolver();
         MimeTypeMap mime=MimeTypeMap.getSingleton();
         return mime.getExtensionFromMimeType(cr.getType(uri));
-
     }
     public void uplodclick(View view){
 //        //String ProdName=tv.getText().toString().trim();
@@ -85,7 +92,9 @@ public class AddProducts extends AppCompatActivity {
                             Uri DownloadUrl=urlTask.getResult();
                             uploads upload=new uploads(name.getText().toString().trim(),DownloadUrl.toString().trim(),wt.getText().toString().trim());
                             String uploadId = db.push().getKey();
+                            String uploadId1 = buyerRef.push().getKey();
                             db.child(uploadId).setValue(upload);
+                            buyerRef.child(uploadId1).setValue(upload);
 
                         }
                     })

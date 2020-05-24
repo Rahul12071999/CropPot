@@ -37,7 +37,6 @@ public class LoginActivity extends AppCompatActivity {
     public void loginClick(View view){
         Email=email.getText().toString().trim();
         Pass=pass.getText().toString().trim();
-        System.out.println(Email+" "+Pass);
         if(TextUtils.isEmpty(Email)){
             Toast.makeText(LoginActivity.this,"Enter your Email",Toast.LENGTH_SHORT).show();
             return;
@@ -56,8 +55,14 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             //FirebaseUser user=fa.getCurrentUser();
-                            Intent it=new Intent(LoginActivity.this,FarmerDashboard.class);
-                            startActivity(it);
+                            if(rb1.isChecked()) {
+                                Intent it = new Intent(LoginActivity.this, FarmerDashboard.class);
+                                startActivity(it);
+                            }
+                            else {
+                                Intent it = new Intent(LoginActivity.this, BuyerDashboard.class);
+                                startActivity(it);
+                            }
                         }
                         else
                             Toast.makeText(LoginActivity.this,"Login Failed",Toast.LENGTH_SHORT).show();

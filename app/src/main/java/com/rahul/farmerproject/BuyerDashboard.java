@@ -15,26 +15,23 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 
-public class FarmerProfile extends AppCompatActivity {
+public class BuyerDashboard extends AppCompatActivity {
     private ListView lv;
     private DatabaseReference ref;
     private ArrayList<String> arr=new ArrayList<>();
     private ArrayList<Integer>  Images=new ArrayList<Integer>();
     private ArrayAdapter<String> products;
-    private FirebaseUser firebaseUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_farmer_profile);
-        lv=findViewById(R.id.listView);
-        firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
-        String No=firebaseUser.getPhoneNumber();
-        String path="Farmer/"+No+"/Products";
-        ref=FirebaseDatabase.getInstance().getReference(path);
-        products=new ArrayAdapter<String>(FarmerProfile.this,android.R.layout.simple_list_item_1,arr);
+        setContentView(R.layout.activity_buyer_dashboard);
+        lv=findViewById(R.id.list_view);
+        ref= FirebaseDatabase.getInstance().getReference("AllProduct");
+        products=new ArrayAdapter<String>(BuyerDashboard.this,android.R.layout.simple_list_item_1,arr);
         lv.setAdapter(products);
         ref.addChildEventListener(new ChildEventListener() {
             @Override
@@ -68,7 +65,6 @@ public class FarmerProfile extends AppCompatActivity {
                 products.notifyDataSetChanged();
             }
         });
-
 
     }
 }

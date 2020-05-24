@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(it1);
     }
     public void btnRegBuyer(View view){
-        Intent it2=new Intent(MainActivity.this,BuyerRegisterActivity.class);
+        Intent it2=new Intent(MainActivity.this,FarmerRegisterActivity.class);
         startActivity(it2);
     }
     @Override
