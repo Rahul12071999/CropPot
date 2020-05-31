@@ -41,7 +41,6 @@ public class FarmerProfile extends AppCompatActivity {
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 //String value=dataSnapshot.getValue(String.class);
                 String Key=dataSnapshot.getKey();
-                //Images.add(R.drawa);
 
                 arr.add(Key);
                 products.notifyDataSetChanged();

@@ -21,6 +21,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class FarmerRegisterActivity extends AppCompatActivity {
+    String node="";
     private EditText Fname,Lname,Email,Password,number,Conpass;
     private Button Reg;
     private FirebaseAuth f;
@@ -70,6 +71,9 @@ public class FarmerRegisterActivity extends AppCompatActivity {
         final String No=number.getText().toString().trim();
         final String pass=Password.getText().toString().trim();
         String cpass=Conpass.getText().toString().trim();
+        for(int i=0;email.charAt(i)!='@';i++){
+            node+=email.charAt(i);
+        }
         if (validateEmail(email) && validatePhone(No)){
             if(pass.equals(cpass)) {
                f.createUserWithEmailAndPassword(email,pass).addOnCompleteListener(FarmerRegisterActivity.this,new OnCompleteListener<AuthResult>() {
@@ -77,7 +81,7 @@ public class FarmerRegisterActivity extends AppCompatActivity {
                    public void onComplete(@NonNull Task<AuthResult> task) {
                        if(task.isSuccessful()){
                            Farmer farmer=new Farmer(fname,lname,email,No);
-                           db.child(No).setValue(farmer);
+                           db.child(node).setValue(farmer);
                            Toast.makeText(FarmerRegisterActivity.this,"Resistration Successful",Toast.LENGTH_SHORT).show();
                            Intent i = new Intent(FarmerRegisterActivity.this, LoginActivity.class);
                            startActivity(i);

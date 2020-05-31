@@ -2,11 +2,11 @@ package com.rahul.farmerproject;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.EditText;
@@ -14,7 +14,6 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -31,6 +30,7 @@ import com.google.firebase.storage.UploadTask;
 import java.time.Instant;
 
 public class AddProducts extends AppCompatActivity {
+    String node="";
     private static final int PICK_IMAGE_REQUEST=1;
     private DatabaseReference db,buyerRef;
     private StorageReference ref;
@@ -45,8 +45,11 @@ public class AddProducts extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_products);
         user= FirebaseAuth.getInstance().getCurrentUser();
-        String no=user.getPhoneNumber();
-        String path="Farmer/"+no+"/Products";
+        String email=user.getEmail().trim();
+        for(int i=0;email.charAt(i)!='@';i++){
+            node+=email.charAt(i);
+        }
+        String path="Farmer/"+node+"/Products";
         db= FirebaseDatabase.getInstance().getReference(path);
         buyerRef=FirebaseDatabase.getInstance().getReference("AllProduct");
         //db= FirebaseDatabase.getInstance().getReference("Farmer/7020139865/Products");
@@ -63,9 +66,6 @@ public class AddProducts extends AppCompatActivity {
         return mime.getExtensionFromMimeType(cr.getType(uri));
     }
     public void uplodclick(View view){
-//        //String ProdName=tv.getText().toString().trim();
-//        String Value=et.getText().toString().trim();
-//        db.child(ProdName).setValue(Value);
         if(muploadtask!=null && muploadtask.isInProgress()){
             Toast.makeText(AddProducts.this,"Upload in Progress",Toast.LENGTH_SHORT).show();
         }
@@ -76,25 +76,24 @@ public class AddProducts extends AppCompatActivity {
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            try {
-                                Thread.sleep(500);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                            pb.setProgress(0);
+                            Handler handler=new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    pb.setProgress(0);
+                                }
+                            }, 500);
+                            //pb.setProgress(0);
                             Toast.makeText(AddProducts.this,"Upload Success",Toast.LENGTH_LONG).show();
-                            /*uploads upload=new uploads(name.getText().toString().trim(),
-                                    taskSnapshot.getUploadSessionUri().toString(),wt.getText().toString().trim());
-                            String uploadid=db.push().getKey();
-                            db.child(uploadid).setValue(upload);*/
                             Task<Uri> urlTask=taskSnapshot.getStorage().getDownloadUrl();
                             while (!urlTask.isSuccessful());
                             Uri DownloadUrl=urlTask.getResult();
                             uploads upload=new uploads(name.getText().toString().trim(),DownloadUrl.toString().trim(),wt.getText().toString().trim());
+                            product Product=new product(name.getText().toString().trim(),DownloadUrl.toString().trim(),wt.getText().toString().trim(),node);
                             String uploadId = db.push().getKey();
                             String uploadId1 = buyerRef.push().getKey();
                             db.child(uploadId).setValue(upload);
-                            buyerRef.child(uploadId1).setValue(upload);
+                            buyerRef.child(uploadId1).setValue(Product);
 
                         }
                     })
@@ -107,7 +106,7 @@ public class AddProducts extends AppCompatActivity {
                     .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                            int progress=(int)(100*taskSnapshot.getBytesTransferred()/taskSnapshot.getTotalByteCount());
+                            int progress=(int)(100.0*taskSnapshot.getBytesTransferred()/taskSnapshot.getTotalByteCount());
                             pb.setProgress(progress);
 
                         }

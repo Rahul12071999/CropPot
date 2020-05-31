@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -20,6 +22,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ImagesActivity extends AppCompatActivity {
+    String node="";
+    private FirebaseUser user;
     private RecyclerView mRecyclerView;
     private ImageAdapter mAdapter;
     private ProgressBar circProgressBar;
@@ -34,7 +38,12 @@ public class ImagesActivity extends AppCompatActivity {
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mUploads= new ArrayList<uploads>();
-        mDatabaseRef= FirebaseDatabase.getInstance().getReference("Farmer/7020139865/Products");
+        user= FirebaseAuth.getInstance().getCurrentUser();
+        String email=user.getEmail().trim();
+        for(int i=0;email.charAt(i)!='@';i++){
+            node+=email.charAt(i);
+        }
+        mDatabaseRef= FirebaseDatabase.getInstance().getReference("Farmer/"+node+"/Products");
         mDatabaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
