@@ -9,6 +9,8 @@
 
     <EditText
         android:id="@+id/em"
+        android:drawableLeft="@drawable/ic_email_black_24dp"
+        android:drawablePadding="8dp"
         android:layout_width="340dp"
         android:layout_height="45dp"
         android:ems="10"
@@ -23,6 +25,8 @@
 
     <EditText
         android:id="@+id/pass"
+        android:drawableLeft="@drawable/ic_lock"
+        android:drawablePadding="8dp"
         android:layout_width="340dp"
         android:layout_height="45dp"
         android:layout_marginTop="68dp"

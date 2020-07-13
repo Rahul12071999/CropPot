@@ -9,6 +9,8 @@
 
     <EditText
         android:id="@+id/first_name"
+        android:drawableLeft="@drawable/ic_person"
+        android:drawablePadding="8dp"
         android:layout_width="340dp"
         android:layout_height="45dp"
         android:layout_marginStart="16dp"
@@ -26,6 +28,8 @@
 
     <EditText
         android:id="@+id/last_name"
+        android:drawableLeft="@drawable/ic_person"
+        android:drawablePadding="8dp"
         android:layout_width="340dp"
         android:layout_height="45dp"
         android:layout_marginTop="40dp"
@@ -37,6 +41,8 @@
 
     <EditText
         android:id="@+id/mob_no"
+        android:drawableLeft="@drawable/ic_phone_black_24dp"
+        android:drawablePadding="8dp"
         android:layout_width="340dp"
         android:layout_height="45dp"
         android:layout_marginTop="40dp"
@@ -48,6 +54,8 @@
 
     <EditText
         android:id="@+id/em"
+        android:drawableLeft="@drawable/ic_email_black_24dp"
+        android:drawablePadding="8dp"
         android:layout_width="340dp"
         android:layout_height="45dp"
         android:layout_marginTop="40dp"
@@ -59,10 +67,13 @@
 
     <EditText
         android:id="@+id/pass"
+        android:drawableLeft="@drawable/ic_lock"
+        android:drawablePadding="8dp"
         android:layout_width="340dp"
         android:layout_height="45dp"
         android:layout_marginTop="40dp"
         android:ems="10"
+
         android:hint="Password"
         android:inputType="textPassword"
         app:layout_constraintStart_toStartOf="@+id/em"
@@ -83,6 +94,8 @@
 
     <EditText
         android:id="@+id/confirmpass"
+        android:drawableLeft="@drawable/ic_lock"
+        android:drawablePadding="8dp"
         android:layout_width="340dp"
         android:layout_height="45dp"
         android:layout_marginTop="40dp"

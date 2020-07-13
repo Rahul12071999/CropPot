@@ -3,9 +3,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -77,12 +79,14 @@ public class FarmerRegisterActivity extends AppCompatActivity {
         if (validateEmail(email) && validatePhone(No)){
             if(pass.equals(cpass)) {
                f.createUserWithEmailAndPassword(email,pass).addOnCompleteListener(FarmerRegisterActivity.this,new OnCompleteListener<AuthResult>() {
+                   @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
                    @Override
                    public void onComplete(@NonNull Task<AuthResult> task) {
                        if(task.isSuccessful()){
                            Farmer farmer=new Farmer(fname,lname,email,No);
                            db.child(node).setValue(farmer);
                            Toast.makeText(FarmerRegisterActivity.this,"Resistration Successful",Toast.LENGTH_SHORT).show();
+                           finishAffinity();
                            Intent i = new Intent(FarmerRegisterActivity.this, LoginActivity.class);
                            startActivity(i);
                        }

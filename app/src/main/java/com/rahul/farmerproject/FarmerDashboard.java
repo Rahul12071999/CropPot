@@ -1,8 +1,10 @@
 package com.rahul.farmerproject;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -27,13 +29,13 @@ public class FarmerDashboard extends AppCompatActivity {
         Intent ifd2=new Intent(FarmerDashboard.this ,AddProducts.class);
         startActivity(ifd2);
     }
-    public void myordersclick(View view)
-    {
-        Toast.makeText(FarmerDashboard.this,"order details",Toast.LENGTH_LONG).show();
-        Intent ifd3=new Intent(FarmerDashboard.this ,FarmerMyOrders.class);
-        startActivity(ifd3);
-    }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public void SignOutClick(View view){
+        finishAffinity();
+        Intent intent=new Intent(FarmerDashboard.this,MainActivity.class);
+        startActivity(intent);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

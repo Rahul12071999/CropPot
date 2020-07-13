@@ -26,9 +26,7 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
-
 import java.time.Instant;
-
 public class AddProducts extends AppCompatActivity {
     String node="";
     private static final int PICK_IMAGE_REQUEST=1;

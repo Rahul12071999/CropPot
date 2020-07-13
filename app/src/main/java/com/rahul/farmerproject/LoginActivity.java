@@ -1,8 +1,10 @@
 package com.rahul.farmerproject;
         import androidx.annotation.NonNull;
+        import androidx.annotation.RequiresApi;
         import androidx.appcompat.app.AppCompatActivity;
 
         import android.content.Intent;
+        import android.os.Build;
         import android.os.Bundle;
         import android.text.TextUtils;
         import android.view.View;
@@ -51,10 +53,12 @@ public class LoginActivity extends AppCompatActivity {
 //        }
         fa.signInWithEmailAndPassword(Email,Pass)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             //FirebaseUser user=fa.getCurrentUser();
+                            finishAffinity();
                             if(rb1.isChecked()) {
                                 Intent it = new Intent(LoginActivity.this, FarmerDashboard.class);
                                 startActivity(it);
